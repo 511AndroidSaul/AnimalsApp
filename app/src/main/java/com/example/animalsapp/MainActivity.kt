@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
                                 icon = {
                                     Row {
                                         Icon(
-                                            imageVector = Icons.Default.Star,
+                                            imageVector = Icons.Default.Star,//#cambiar icono
                                             contentDescription = "Inicio",
                                             tint = Color.Black,
                                             modifier = Modifier.size(24.dp)
@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
                                 icon = {
                                     Row {
                                         Icon(
-                                            imageVector = Icons.Default.List,
+                                            imageVector = Icons.Default.List,//#cambiar icono
                                             contentDescription = "Ambiente",
                                             tint = Color.Black,
                                             modifier = Modifier.size(24.dp)
