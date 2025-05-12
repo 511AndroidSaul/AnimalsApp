@@ -8,14 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
-
 @Composable
-fun HomeScreen(innerPadding: PaddingValues) {
+fun AmbientsScreen(innerPadding: PaddingValues) {
     Column(
         modifier = Modifier.padding(innerPadding)
-    ) {
+    ){
         Text(
-            text = "Inicio", color = Color.White
-        )
+            text = "Animals", color = Color.White
+        )   
     }
 }

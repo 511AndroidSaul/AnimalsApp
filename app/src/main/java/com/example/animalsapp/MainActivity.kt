@@ -15,7 +15,6 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,8 +24,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.animalsapp.screens.AmbientsScreen
+import com.example.animalsapp.screens.HomeScreen
 import com.example.animalsapp.ui.theme.AnimalsAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,28 +38,26 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AnimalsAppTheme {
-                var selectedSreen by remember {
-                mutableStateOf("inicio")
-            }
+                var selectedScreen by remember { mutableStateOf("inicio") }
+                val navController = rememberNavController() // Inicialización del navController
+
                 Scaffold(
-                    modifier = Modifier.fillMaxSize()
-                        .background(Color(0xFF2E372E)),//color prueba
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color(0xFF2E372E)), // Color de fondo
                     contentColor = Color.Transparent,
                     containerColor = Color.Transparent,
                     bottomBar = {
-                        NavigationBar(
-                            containerColor = Color(0xFFF4F48D)
-                        ){
+                        NavigationBar(containerColor = Color(0xFFF4F48D)) {
                             NavigationBarItem(
-                                selected = selectedSreen == "inicio",
-                                onClick = {
-                                    selectedSreen = "inicio"
-                                },
+                                selected = selectedScreen == "inicio",
+                                onClick = { selectedScreen = "inicio"
+                                          navController.navigate("inicio") },
                                 icon = {
-                                    Row(){
+                                    Row {
                                         Icon(
-                                            imageVector = Icons.Default.Star, //icono prueba
-                                            contentDescription = "inicio",
+                                            imageVector = Icons.Default.Star,
+                                            contentDescription = "Inicio",
                                             tint = Color.Black,
                                             modifier = Modifier.size(24.dp)
                                         )
@@ -65,19 +66,17 @@ class MainActivity : ComponentActivity() {
                                             text = "Inicio",
                                             color = Color.Black
                                         )
-
                                     }
-                                },
+                                }
                             )
                             NavigationBarItem(
-                                selected = selectedSreen == "ambiente",
-                                onClick = {
-                                    selectedSreen = "ambiente"
-                                },
+                                selected = selectedScreen == "ambiente",
+                                onClick = { selectedScreen = "ambiente"
+                                          navController.navigate("ambients") },
                                 icon = {
-                                    Row(){
+                                    Row {
                                         Icon(
-                                            imageVector = Icons.Default.List, //icono prueba
+                                            imageVector = Icons.Default.List,
                                             contentDescription = "Ambiente",
                                             tint = Color.Black,
                                             modifier = Modifier.size(24.dp)
@@ -87,35 +86,24 @@ class MainActivity : ComponentActivity() {
                                             text = "Ambiente",
                                             color = Color.Black
                                         )
-
                                     }
-                                },
+                                }
                             )
                         }
                     }
                 ) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    NavHost(
+                        navController = navController, startDestination = "inicio"
+                    ) {
+                        composable(route = "inicio") {
+                            HomeScreen( innerPadding = innerPadding)
+                        }
+                        composable(route = "Ambients"){
+                            AmbientsScreen(innerPadding = innerPadding)
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AnimalsAppTheme {
-        Greeting("Android")
     }
 }
