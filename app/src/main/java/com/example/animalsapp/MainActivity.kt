@@ -100,7 +100,7 @@ class MainActivity : ComponentActivity() {
                             HomeScreen( innerPadding = innerPadding, navController = navController)
                         }
                         composable(route = "ambients"){
-                            AmbientsScreen(innerPadding = innerPadding)
+                            AmbientsScreen(innerPadding = innerPadding, navController = navController)
                         }
                         composable(route = "animal/{id}") { backStackEntry ->
                             val animalId = backStackEntry.arguments?.getString("id") // Corregido
