@@ -1,12 +1,14 @@
 package com.example.animalsapp.screens
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,6 +19,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Compost
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -40,11 +46,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.animalsapp.services.AnimalsService
 import kotlinx.coroutines.launch
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 
 @Composable
@@ -80,6 +89,52 @@ fun HomeScreen(innerPadding: PaddingValues, navController: NavController) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Row {
+            Text(
+                text = "Animales",
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                modifier = Modifier
+                    .padding(30.dp),
+                textAlign = TextAlign.Start
+            )
+            Box(
+                modifier = Modifier
+                    .padding(30.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(Color(0xFFF4F48D))
+                    .width(100.dp)
+                    .height(40.dp),
+                contentAlignment = Alignment.Center
+            ){
+                Row(){
+                    Icon(
+                        imageVector = Icons.Default.Compost,
+                        contentDescription = null,
+                        tint = Color.Black
+                    )
+                    Text(
+                        text = "Agregar",
+                        fontSize = 16.sp,
+                        color = Color.Black,
+
+                        )
+                }
+
+            }
+        }
+        Text(
+            text = "Conoce a los animales más increíbles del mundo",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Normal,
+            color = Color.White,
+            modifier = Modifier
+                .padding((25.dp))
+                .padding(bottom = 22.dp)
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center
+        )
         animals.forEach { animal ->
             AsyncImage(
                 model = animal.image,
@@ -97,10 +152,12 @@ fun HomeScreen(innerPadding: PaddingValues, navController: NavController) {
             )
             Text(
                 text = animal.name.split(" ").first(),
+                fontSize = 24.sp,
+                fontWeight =  FontWeight.Bold,
                 color = Color.White,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 16.dp),
+                    .padding(bottom = 30.dp),
                 textAlign = TextAlign.Center)
         }
     }
