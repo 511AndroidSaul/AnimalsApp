@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.animalsapp.screens.AmbientsDetailScreen
 import com.example.animalsapp.screens.AmbientsScreen
 import com.example.animalsapp.screens.AnimalDetailScreen
 import com.example.animalsapp.screens.HomeScreen
@@ -106,6 +107,12 @@ class MainActivity : ComponentActivity() {
                             val animalId = backStackEntry.arguments?.getString("id") // Corregido
                             animalId?.let {
                                 AnimalDetailScreen(animalId = it, innerPadding = innerPadding, navController = navController)
+                            }
+                        }
+                        composable(route = "environment/{id}") { backStackEntry ->
+                            val ambientId = backStackEntry.arguments?.getString("id") // Corregido
+                            ambientId?.let {
+                                AmbientsDetailScreen(ambientId = it, innerPadding = innerPadding, navController = navController)
                             }
                         }
 
