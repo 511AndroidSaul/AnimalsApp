@@ -7,4 +7,8 @@ interface AnimalsService {
 
     @GET("animals")
     suspend fun getAnimals(): List<Animals>
+
+    @GET("animals/{id}")
+    suspend fun getAnimalById(@retrofit2.http.Path("id") id: String): Animals
+
 }

@@ -105,7 +105,7 @@ class MainActivity : ComponentActivity() {
                         composable(route = "animal/{id}") { backStackEntry ->
                             val animalId = backStackEntry.arguments?.getString("id") // Corregido
                             animalId?.let {
-                                AnimalDetailScreen(animalId = it)
+                                AnimalDetailScreen(animalId = it, innerPadding = innerPadding, navController = navController)
                             }
                         }
 
