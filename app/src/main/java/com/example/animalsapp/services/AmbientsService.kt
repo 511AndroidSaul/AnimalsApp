@@ -9,4 +9,5 @@ interface AmbientsService {
 
     @GET("environments/{id}")
     suspend fun getAmbientById(@retrofit2.http.Path("id") id: String): Ambients
+
 }

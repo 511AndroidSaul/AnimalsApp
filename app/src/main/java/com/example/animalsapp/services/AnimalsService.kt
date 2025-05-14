@@ -11,4 +11,7 @@ interface AnimalsService {
     @GET("animals/{id}")
     suspend fun getAnimalById(@retrofit2.http.Path("id") id: String): Animals
 
+    @GET("animals/environment/{id}")
+    suspend fun getAnimalbyEnvironmentId(@retrofit2.http.Path("id") id: String): List<Animals>
+
 }
