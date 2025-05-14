@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
                                 .padding(horizontal = 24.dp, vertical = 26.dp) // Espaciado general
                                 .navigationBarsPadding() // Ajuste automático al sistema (opcional)
                                 .clip(RoundedCornerShape(50.dp))
-                                .height(70.dp)
+                                .height(60.dp)
                         ){
                             NavigationBarItem(
                                 selected = selectedScreen == "inicio",
